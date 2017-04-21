@@ -1,0 +1,24 @@
+{
+  "name": "leaflet-html-legend",
+  "version": "0.1.0",
+  "description": "Leaflet legend plugin using html elements",
+  "homepage": "http://github.com/consbio/Leaflet.HtmlLegend",
+  "author": {
+    "name": "Kaveh Karimi",
+    "email": "kaveh.ka@consbio.org"
+  },
+  "scripts": {
+    "build": "uglifyjs L.Control.HtmlLegend.js -o L.Control.HtmlLegend.min.js"
+  },
+  "devDependencies": {
+    "uglifyjs": "^2.4.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/consbio/Leaflet.HtmlLegend"
+  },
+  "keywords": [
+    "leaflet"
+  ],
+  "license": "ISC"
+}

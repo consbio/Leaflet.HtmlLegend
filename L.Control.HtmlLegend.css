@@ -1,0 +1,216 @@
+.leaflet-html-legend {
+    background: #FFF;
+    border: 2px solid #FFF;
+    padding: 6px;
+    max-height: 250px;
+    overflow-y: auto;
+    line-height: 1.2;
+    width: 250px;
+
+}
+
+.leaflet-html-legend h4 {
+    margin: 0 0 4px 0;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.leaflet-html-legend h4:hover {
+    background: #F6F6F6;
+}
+
+.leaflet-html-legend h4 > span {
+    margin-left: 18px;
+    color: #333;
+}
+
+.leaflet-html-legend h4.closed + .legend-elements {
+    display: none;
+}
+
+.leaflet-html-legend .legend-elements {
+    padding-left: 5px;
+}
+
+.leaflet-html-legend .symbol {
+    margin-right: 6px;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.leaflet-html-legend label {
+    max-width: 200px;
+    display: inline-block;
+    vertical-align: middle;
+    word-wrap: break-word;
+    color: #555;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.legend-block {
+    margin-right: 7px;
+    width: 100%;
+}
+
+.legend-block + .legend-block {
+    margin-top: 8px;
+    border-top: 1px solid #EEE;
+    padding-top: 4px;
+}
+
+/* force OSX to show a scrollbar */
+.leaflet-html-legend::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+.leaflet-html-legend::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.leaflet-html-legend::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* from http://lugolabs.com/caret */
+.leaflet-html-legend .legend-caret {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    top: 0.5em;
+    left: 0;
+}
+
+.leaflet-html-legend .legend-caret:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 3px;
+    border-top: 0.5em solid #555;
+    border-left: 0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+}
+
+.leaflet-html-legend h4.closed .legend-caret {
+    top: 0.25em;
+    left: 0.25em;
+}
+
+.leaflet-html-legend h4.closed .legend-caret:before {
+    border-left: 0.5em solid #555;
+    border-top: 0.5em solid transparent;
+    border-bottom: 0.5em solid transparent;
+}
+
+/* opacity slider */
+.leaflet-html-legend .slider-label {
+    font-size: 0.8em;
+    margin-right: 10px;
+}
+
+.leaflet-html-legend .opacity-slider {
+    display: inline-flex;
+    padding: 4px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.leaflet-html-legend .opacity-slider .icon {
+    margin: 0 3px;
+    font-size: 0.8em;
+}
+
+.leaflet-html-legend .opacity-slider input[type=range] {
+    -webkit-appearance: none;
+    width: 50%;
+    cursor: ew-resize;
+    opacity: 0.5;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    -moz-transform: translateY(-0.3em);
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]:focus {
+    outline: none;
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    animate: 0.2s;
+    background: #ddd;
+    border: none;
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]::-webkit-slider-thumb {
+    border: 0px solid #000000;
+    height: 12px;
+    width: 12px;
+    border-radius: 7px;
+    background: #333;
+    -webkit-appearance: none;
+    margin-top: -3.6px;
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ddd;
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    animate: 0.2s;
+    background: #ddd;
+    border: none;
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 7px;
+    background: #333;
+
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]::-ms-track {
+    width: 100%;
+    height: 5px;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    border-width: 39px 0;
+    color: transparent;
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]::-ms-fill-lower {
+    background: #ddd;
+    border: none;
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border: none;
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]::-ms-thumb {
+    border: 0px solid #000000;
+    height: 12px;
+    width: 12px;
+    border-radius: 7px;
+    background: #333;
+
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]:focus::-ms-fill-lower {
+    background: #ddd;
+}
+
+.leaflet-html-legend .opacity-slider input[type=range]:focus::-ms-fill-upper {
+    background: #ddd;
+}
