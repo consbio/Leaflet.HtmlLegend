@@ -13,12 +13,18 @@
   "devDependencies": {
     "uglifyjs": "^2.4.10"
   },
+  "peerDependencies": {
+    "leaflet": ">= 1.0.0 < 1.1.0"
+  },
+  "bugs": {
+    "url": "https://github.com/consbio/Leaflet.HtmlLegend/issues"
+  },
+  "main": "L.Control.HtmlLegend.min.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/consbio/Leaflet.HtmlLegend"
   },
   "keywords": [
     "leaflet"
-  ],
-  "license": "ISC"
+  ]
 }

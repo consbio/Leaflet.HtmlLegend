@@ -25,7 +25,7 @@ Include the CSS:
 Include the JavaScript:
 
 ```html
-<script src="L.Control.HtmlLegend-min.js"></script>
+<script src="L.Control.HtmlLegend.min.js"></script>
 ```
 
 
