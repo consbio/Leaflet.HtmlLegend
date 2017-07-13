@@ -7,13 +7,10 @@ L.Control.HtmlLegend = L.Control.extend({
         legends: [],   // array of legend entries - see README for format
         collapseSimple: false,  // if true, legend entries that are from a simple renderer will use compact presentation
         detectStretched: false,  // if true, will test to see if legend entries look stretched.  These are usually in sets of 3 with the middle element having no label.
-        layersOpacity: {
-            defaultValue: 1,
-            sliderIcons: {
-                visible: 'fa fa-eye',
-                hidden: 'fa fa-eye-slash'
-            }
-        }
+        defaultOpacity: 1,
+        visibleIcon: 'leaflet-html-legend-icon-eye',
+        hiddenIcon: 'leaflet-html-legend-icon-eye-slash',
+        toggleIcon: 'leaflet-html-legend-icon-eye'
     },
 
     onAdd: function (map) {
@@ -97,6 +94,14 @@ L.Control.HtmlLegend = L.Control.extend({
         }
     },
 
+    _updateOpacity: function (layer, opacity) {
+        if (typeof layer.setOpacity === 'function') {
+            layer.setOpacity(opacity);
+        } else if (typeof layer.setStyle === 'function') {
+            layer.setStyle({opacity: opacity});
+        }
+    },
+
     _connectLayer: function (container, legend) {
         var layer = legend.layer;
 
@@ -105,12 +110,8 @@ L.Control.HtmlLegend = L.Control.extend({
             return
         }
 
-        var opacity = 1 - (layer.opacity || this.options.layersOpacity.defaultValue || 0);
-        if (typeof layer.setOpacity === 'function') {
-            layer.setOpacity(opacity);
-        } else if (typeof layer.setStyle === 'function') {
-            layer.setStyle({opacity: opacity});
-        }
+        var opacity = layer.opacity || this.options.defaultOpacity || 1;
+        this._updateOpacity(layer, opacity);
 
         if (this._map.hasLayer(layer)) {
             this._activeLayers++;
@@ -120,11 +121,24 @@ L.Control.HtmlLegend = L.Control.extend({
 
         container.classList.add('layer-control');
 
+        var toggleButton = L.DomUtil.create('i', 'visibility-toggle ' + this.options.toggleIcon, container);
+        toggleButton.dataset.visibileOpacity = opacity;
+        L.DomEvent.on(toggleButton, 'click', function (e) {
+            var button = e.target;
+            if (L.DomUtil.hasClass(button, 'disabled')) {
+                L.DomUtil.removeClass(button, 'disabled')
+                this._updateOpacity(layer, button.dataset.visibileOpacity);
+            } else {
+                L.DomUtil.addClass(button, 'disabled')
+                this._updateOpacity(layer, 0);
+            }
+        }.bind(this));
+
         var opacityController = L.DomUtil.create('span', 'opacity-slider', container);
 
         L.DomUtil.create('span', 'slider-label', opacityController).innerHTML = 'Transparency:';
 
-        L.DomUtil.create('i', this.options.layersOpacity.sliderIcons.visible, opacityController).classList.add('icon');
+        L.DomUtil.create('i', this.options.visibleIcon, opacityController);
 
         var opacitySlider = L.DomUtil.create('input', null, opacityController);
         opacitySlider.type = 'range';
@@ -133,16 +147,13 @@ L.Control.HtmlLegend = L.Control.extend({
         opacitySlider.step = 0.1;
         opacitySlider.onchange = function (e) {
             var opacity = 1 - e.target.value || 0;
-
-            if (typeof layer.setOpacity === 'function') {
-                layer.setOpacity(opacity);
-            } else if (typeof layer.setStyle === 'function') {
-                layer.setStyle({opacity: opacity});
-            }
+            this._updateOpacity(layer, opacity)
+            toggleButton.dataset.visibileOpacity = opacity;
+            L.DomUtil.removeClass(toggleButton, 'disabled');
         }.bind(this);
-        opacitySlider.value = layer.opacity || this.options.layersOpacity.defaultValue || 0;
+        opacitySlider.value = 1 - (opacity);
 
-        L.DomUtil.create('i', this.options.layersOpacity.sliderIcons.hidden, opacityController).classList.add('icon');
+        L.DomUtil.create('i', this.options.hiddenIcon, opacityController);
 
         map.on('layeradd', function (e) {
             if (e.layer == layer) {

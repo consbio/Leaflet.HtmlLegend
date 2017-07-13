@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>Leaflet HTML Legend</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"/>
     <link rel="stylesheet" href="L.Control.HtmlLegend.css"/>
 
     <style>
@@ -39,7 +39,7 @@
     </style>
 </head>
 <body>
-<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"></script>
 <script src="L.Control.HtmlLegend.js"></script>
 <div id="map" style="position: absolute; top: 0; left:0; bottom:0; right: 0;"></div>
 
@@ -266,13 +266,9 @@
         }],
         collapseSimple: true,
         detectStretched: true,
-        layersOpacity: {
-            defaultValue: 0.7,
-            sliderIcons: {
-                visible: 'icon icon-eye',
-                hidden: 'icon icon-eye-slash'
-            }
-        }
+        defaultOpacity: 0.7,
+        visibleIcon: 'icon icon-eye',
+        hiddenIcon: 'icon icon-eye-slash'
     });
 
     map.addControl(htmlLegend1);
@@ -288,12 +284,8 @@
         }],
         collapseSimple: true,
         detectStretched: true,
-        layersOpacity: {
-            sliderIcons: {
-                visible: 'icon icon-eye',
-                hidden: 'icon icon-eye-slash'
-            }
-        }
+        visibleIcon: 'icon icon-eye',
+        hiddenIcon: 'icon icon-eye-slash'
     });
 
     map.addControl(htmlLegend2);

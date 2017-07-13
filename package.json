@@ -1,6 +1,6 @@
 {
   "name": "leaflet-html-legend",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Leaflet legend plugin using html elements",
   "homepage": "http://github.com/consbio/Leaflet.HtmlLegend",
   "author": {
@@ -13,11 +13,11 @@
   "devDependencies": {
     "uglifyjs": "^2.4.10"
   },
-  "peerDependencies": {
-    "leaflet": ">= 1.0.0 < 1.1.0"
-  },
   "bugs": {
     "url": "https://github.com/consbio/Leaflet.HtmlLegend/issues"
+  },
+  "peerDependencies": {
+    "leaflet": "^1.0.0"
   },
   "main": "L.Control.HtmlLegend.min.js",
   "repository": {
@@ -25,6 +25,6 @@
     "url": "git://github.com/consbio/Leaflet.HtmlLegend"
   },
   "keywords": [
-    "leaflet"
+    "leaflet", "leaflet-legend"
   ]
 }
