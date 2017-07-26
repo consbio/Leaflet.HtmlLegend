@@ -36,6 +36,7 @@ Options:
     legends: [],   // array of legend entries. see below for the structure
     collapseSimple: false,  // if true, legend entries that are from a simple renderer will use compact presentation
     detectStretched: false,  // if true, will test to see if legend entries look stretched.  These are usually in sets of 3 with the middle element having no label.
+    collapsedOnInit: false,  // if true, legends will be collapsed when a new instance is initialized.
     defaultOpacity: 1, // default opacity for layers in specified in legends.
     visibleIcon: 'leaflet-html-legend-icon-eye',  // css class for the visible icon on opacity slider
     hiddenIcon: 'leaflet-html-legend-icon-eye-slash',  // css class for the hidden icon on opacity slider

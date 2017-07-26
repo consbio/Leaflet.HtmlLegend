@@ -6,7 +6,8 @@ L.Control.HtmlLegend = L.Control.extend({
         position: 'topright',
         legends: [],   // array of legend entries - see README for format
         collapseSimple: false,  // if true, legend entries that are from a simple renderer will use compact presentation
-        detectStretched: false,  // if true, will test to see if legend entries look stretched.  These are usually in sets of 3 with the middle element having no label.
+        detectStretched: false,  // if true, will test to see if legend entries look stretched; these are usually in sets of 3 with the middle element having no label.
+        collapsedOnInit: false,  // if true, legends will be collapsed when a new instance is initialized.
         defaultOpacity: 1,
         visibleIcon: 'leaflet-html-legend-icon-eye',
         hiddenIcon: 'leaflet-html-legend-icon-eye-slash',
@@ -58,6 +59,10 @@ L.Control.HtmlLegend = L.Control.extend({
                 var header = L.DomUtil.create('h4', null, block);
                 L.DomUtil.create('div', 'legend-caret', header);
                 L.DomUtil.create('span', null, header).innerHTML = legend.name;
+
+                if (this.options.collapsedOnInit) {
+                    L.DomUtil.addClass(header, 'closed');
+                }
 
                 L.DomEvent.on(header, 'click', function () {
                     if (L.DomUtil.hasClass(header, 'closed')) {
