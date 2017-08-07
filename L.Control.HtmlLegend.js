@@ -160,7 +160,7 @@ L.Control.HtmlLegend = L.Control.extend({
 
         L.DomUtil.create('i', this.options.hiddenIcon, opacityController);
 
-        map.on('layeradd', function (e) {
+        this._map.on('layeradd', function (e) {
             if (e.layer == layer) {
                 this._activeLayers++;
                 container.style.display = '';
