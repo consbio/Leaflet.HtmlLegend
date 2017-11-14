@@ -56,6 +56,18 @@ Each element has:
 * html (optional): string representaiton of an HTML elemnt that goes into the legend block
 * style (optional): an object containing css styling of the legend block
 
+You can use `addLegend` method to add legends to existing instances of `HtmlLegend`:
+```javascript
+var htmlLegend = L.control.htmllegend({...});
+htmlLegend.addLegend({
+        name: 'Layer name',
+        layer: layerInstance,
+        elements: [{
+            html: '<div>Legend description</div>'
+        }]
+    })
+```
+
 
 See the [example](//consbio.github.io/Leaflet.HtmlLegend) for usage details.
 

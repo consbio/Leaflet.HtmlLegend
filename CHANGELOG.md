@@ -1,3 +1,7 @@
+0.2.3 (2017-11-13)
+  * Add `addLegend`
+    - A new method to add legends to existing instances of HtmlLegend
+
 0.2.2 (2017-08-07)
   * Fix the wrong call to the map container in `_connectLayer`.
 

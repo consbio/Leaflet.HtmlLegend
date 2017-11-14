@@ -2,10 +2,10 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Leaflet HTML Legend</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"/>
-    <link rel="stylesheet" href="L.Control.HtmlLegend.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="dist/L.Control.HtmlLegend.css" />
 
     <style>
         @font-face {
@@ -39,8 +39,8 @@
     </style>
 </head>
 <body>
-<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"></script>
-<script src="L.Control.HtmlLegend.js"></script>
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+<script src="dist/L.Control.HtmlLegend.js"></script>
 <div id="map" style="position: absolute; top: 0; left:0; bottom:0; right: 0;"></div>
 
 <div id="Pentagon" style="display: none">
@@ -65,18 +65,17 @@
         minZoom: 2
     }).addTo(map);
 
-
     var layer1GeoJSON = {
-        "type": "FeatureCollection",
-        "features": [
+        'type': 'FeatureCollection',
+        'features': [
             {
-                "type": "Feature",
-                "properties": {
-                    "color": "red"
+                'type': 'Feature',
+                'properties': {
+                    'color': 'red'
                 },
-                "geometry": {
-                    "type": "Polygon",
-                    "coordinates": [
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [
                         [
                             [
                                 -109.58862304687499,
@@ -103,13 +102,13 @@
                 }
             },
             {
-                "type": "Feature",
-                "properties": {
-                    "color": "green"
+                'type': 'Feature',
+                'properties': {
+                    'color': 'green'
                 },
-                "geometry": {
-                    "type": "Polygon",
-                    "coordinates": [
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [
                         [
                             [
                                 -109.86328125,
@@ -135,14 +134,14 @@
     };
 
     var layer2GeoJSON = {
-        "type": "FeatureCollection",
-        "features": [
+        'type': 'FeatureCollection',
+        'features': [
             {
-                "type": "Feature",
-                "properties": {},
-                "geometry": {
-                    "type": "Polygon",
-                    "coordinates": [
+                'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [
                         [
                             [
                                 -107.4462890625,
@@ -168,11 +167,11 @@
     };
 
     layer3GeoJSON = {
-        "type": "Feature",
-        "properties": {},
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        'type': 'Feature',
+        'properties': {},
+        'geometry': {
+            'type': 'Polygon',
+            'coordinates': [
                 [
                     [
                         -107.3968505859375,
@@ -205,29 +204,29 @@
 
     var layer1 = L.geoJSON(layer1GeoJSON, {
         style: function (feature) {
-            return {color: feature.properties.color, fill: false};
+            return { color: feature.properties.color, fill: false };
         }
     }).addTo(map);
 
     var layer2 = L.geoJSON(layer2GeoJSON, {
         style: function (feature) {
-            return {color: 'blue', fill: false};
+            return { color: 'blue', fill: false };
         }
     });
 
     var layer3 = L.geoJSON(layer3GeoJSON, {
         style: function (feature) {
-            return {color: 'orange', fill: false};
+            return { color: 'orange', fill: false };
         }
     }).addTo(map);
 
     var overlays = {
-        "Layer 1": layer1,
-        "Layer 2": layer2,
-        "Layer 3": layer3
+        'Layer 1': layer1,
+        'Layer 2': layer2,
+        'Layer 3': layer3
     };
 
-    L.control.layers(null, overlays, {collapsed: false}).addTo(map);
+    L.control.layers(null, overlays, { collapsed: false }).addTo(map);
 
     var htmlLegend1 = L.control.htmllegend({
         position: 'bottomright',
@@ -238,29 +237,17 @@
                 label: 'Rectangle',
                 html: '',
                 style: {
-                    "background-color": "red",
-                    "width": "10px",
-                    "height": "10px"
+                    'background-color': 'red',
+                    'width': '10px',
+                    'height': '10px'
                 }
             }, {
                 label: 'Triangle',
                 html: '',
                 style: {
-                    "background-color": "green",
-                    "width": "10px",
-                    "height": "10px"
-                }
-            }]
-        }, {
-            name: 'Layer 2',
-            layer: layer2,
-            opacity: 0.5,
-            elements: [{
-                html: '',
-                style: {
-                    "background-color": "blue",
-                    "width": "10px",
-                    "height": "10px"
+                    'background-color': 'green',
+                    'width': '10px',
+                    'height': '10px'
                 }
             }]
         }],
@@ -272,6 +259,19 @@
         hiddenIcon: 'icon icon-eye-slash'
     });
 
+    htmlLegend1.addLegend({
+        name: 'Layer 2',
+        layer: layer2,
+        opacity: 0.5,
+        elements: [{
+            html: '',
+            style: {
+                'background-color': 'blue',
+                'width': '10px',
+                'height': '10px'
+            }
+        }]
+    });
     map.addControl(htmlLegend1);
 
     var htmlLegend2 = L.control.htmllegend({
