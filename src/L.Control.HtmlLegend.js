@@ -17,6 +17,7 @@ L.Control.HtmlLegend = L.Control.extend({
         // if true, legends will be collapsed when a new instance is initialized
         collapsedOnInit: false,
 
+        updateOpacity: null,
         defaultOpacity: 1,
         visibleIcon: 'leaflet-html-legend-icon-eye',
         hiddenIcon: 'leaflet-html-legend-icon-eye-slash',
@@ -120,10 +121,11 @@ L.Control.HtmlLegend = L.Control.extend({
     },
 
     _updateOpacity(layer, opacity) {
-        if (typeof layer.setOpacity === 'function') {
+        if (typeof this.options.updateOpacity === 'function') {
+            this.options.updateOpacity(layer, opacity)
+        } else if (typeof layer.setOpacity === 'function') {
             layer.setOpacity(opacity);
-        }
-        else if (typeof layer.setStyle === 'function') {
+        } else if (typeof layer.setStyle === 'function') {
             layer.setStyle({ opacity });
         }
     },
