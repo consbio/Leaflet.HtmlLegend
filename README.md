@@ -2,7 +2,7 @@
 
 A simple Leaflet plugin for creating legends with HTML.
 
-*Tested with Leaflet 1.1.0*
+*Tested with Leaflet 1.3.x*
 
 ## Install
 
@@ -64,6 +64,8 @@ htmlLegend.addLegend({
         }]
     })
 ```
+
+An existing entry in a legend control instance can be removed using `removeLegend`. This method needs id of the entry, which can be obtained from `htmllegend._entries` (see the example for usage).
 
 
 See the [example](//consbio.github.io/Leaflet.HtmlLegend) for usage details.

@@ -282,15 +282,11 @@
     }).addTo(map)
 
     var layer2 = L.geoJSON(layer2GeoJSON, {
-        style: function (feature) {
-            return { color: 'blue', fill: false }
-        }
+        style: { color: 'blue', fill: false }
     })
 
     var layer3 = L.geoJSON(layer3GeoJSON, {
-        style: function (feature) {
-            return { color: 'orange', fill: false }
-        }
+        style: { color: 'orange', fill: false }
     }).addTo(map)
 
     var layer4 = L.geoJSON(layer4GeoJSON, {
@@ -301,7 +297,7 @@
         'Layer 1': layer1,
         'Layer 2': layer2,
         'Layer 3': layer3,
-        'Layer 4:': layer4
+        'Layer 4': layer4
     }
 
     L.control.layers(null, overlays, { collapsed: false }).addTo(map)
@@ -390,6 +386,23 @@
     })
 
     map.addControl(htmlLegend4)
+
+    var DeleteControl  = L.Control.extend({
+        options: {
+            position: 'topright'
+        },
+        onAdd: function(m) {
+            var btn = L.DomUtil.create('button')
+            btn.innerText = 'Delete layer 1'
+            L.DomEvent.on(btn, 'click', function() {
+                // Remove legend uses entry id, which can be accessed through `htmllegend._entries`
+                htmlLegend1and2.removeLegend(1)
+                m.removeControl(this)
+            })
+            return btn
+        }
+    })
+    map.addControl(new DeleteControl())
 </script>
 </body>
 </html>
