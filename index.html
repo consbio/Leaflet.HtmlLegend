@@ -36,6 +36,34 @@
         .icon-eye:before {
             content: "\e904";
         }
+
+        .hexagon {
+            position: relative;
+            width: 13px;
+            height: 7.51px;
+            background-color: #64C7CC;
+            margin: 3.75px 0;
+        }
+
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 6.5px solid transparent;
+            border-right: 6.5px solid transparent;
+        }
+
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 3.75px solid #64C7CC;
+        }
+
+        .hexagon:after {
+            top: 100%;
+            width: 0;
+            border-top: 3.75px solid #64C7CC;
+        }
     </style>
 </head>
 <body>
@@ -56,14 +84,14 @@
 </div>
 
 <script>
-    var map = L.map('map').setView([28.707, -109], 8);
+    var map = L.map('map').setView([28.707, -109], 8)
 
     L.tileLayer('//stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png', {
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
         subdomains: 'abcd',
         maxZoom: 10,
         minZoom: 2
-    }).addTo(map);
+    }).addTo(map)
 
     var layer1GeoJSON = {
         'type': 'FeatureCollection',
@@ -131,7 +159,7 @@
                 }
             }
         ]
-    };
+    }
 
     var layer2GeoJSON = {
         'type': 'FeatureCollection',
@@ -164,9 +192,9 @@
                 }
             }
         ]
-    };
+    }
 
-    layer3GeoJSON = {
+    var layer3GeoJSON = {
         'type': 'Feature',
         'properties': {},
         'geometry': {
@@ -200,35 +228,81 @@
                 ]
             ]
         }
-    };
+    }
+
+    var layer4GeoJSON = {
+        'type': 'FeatureCollection',
+        'features': [
+            {
+                'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [
+                        [
+                            [
+                                -108.25653076171875,
+                                29.188135030802496
+                            ],
+                            [
+                                -108.28262329101562,
+                                29.10897615145302
+                            ],
+                            [
+                                -108.22769165039062,
+                                29.059771002186196
+                            ],
+                            [
+                                -108.13980102539062,
+                                29.054969241647125
+                            ],
+                            [
+                                -108.09036254882812,
+                                29.123373210819224
+                            ],
+                            [
+                                -108.12606811523438,
+                                29.185737173254434
+                            ],
+                            [
+                                -108.25653076171875,
+                                29.188135030802496
+                            ]
+                        ]
+                    ]
+                }
+            }
+        ]
+    }
 
     var layer1 = L.geoJSON(layer1GeoJSON, {
         style: function (feature) {
-            return { color: feature.properties.color, fill: false };
+            return { color: feature.properties.color, fill: false }
         }
-    }).addTo(map);
+    }).addTo(map)
 
     var layer2 = L.geoJSON(layer2GeoJSON, {
-        style: function (feature) {
-            return { color: 'blue', fill: false };
-        }
-    });
+        style: { color: 'blue', fill: false }
+    })
 
     var layer3 = L.geoJSON(layer3GeoJSON, {
-        style: function (feature) {
-            return { color: 'orange', fill: false };
-        }
-    }).addTo(map);
+        style: { color: 'orange', fill: false }
+    }).addTo(map)
+
+    var layer4 = L.geoJSON(layer4GeoJSON, {
+        style: { stroke: false, fillColor: '#64C7CC', fill: true }
+    }).addTo(map)
 
     var overlays = {
         'Layer 1': layer1,
         'Layer 2': layer2,
-        'Layer 3': layer3
-    };
+        'Layer 3': layer3,
+        'Layer 4': layer4
+    }
 
-    L.control.layers(null, overlays, { collapsed: false }).addTo(map);
+    L.control.layers(null, overlays, { collapsed: false }).addTo(map)
 
-    var htmlLegend1 = L.control.htmllegend({
+    var htmlLegend1and2 = L.control.htmllegend({
         position: 'bottomright',
         legends: [{
             name: 'Layer 1',
@@ -257,9 +331,9 @@
         defaultOpacity: 0.7,
         visibleIcon: 'icon icon-eye',
         hiddenIcon: 'icon icon-eye-slash'
-    });
+    })
 
-    htmlLegend1.addLegend({
+    htmlLegend1and2.addLegend({
         name: 'Layer 2',
         layer: layer2,
         opacity: 0.5,
@@ -271,10 +345,10 @@
                 'height': '10px'
             }
         }]
-    });
-    map.addControl(htmlLegend1);
+    })
+    map.addControl(htmlLegend1and2)
 
-    var htmlLegend2 = L.control.htmllegend({
+    var htmlLegend3 = L.control.htmllegend({
         position: 'bottomright',
         legends: [{
             name: 'Layer 3',
@@ -287,9 +361,48 @@
         detectStretched: true,
         visibleIcon: 'icon icon-eye',
         hiddenIcon: 'icon icon-eye-slash'
-    });
+    })
 
-    map.addControl(htmlLegend2);
+    map.addControl(htmlLegend3)
+
+    var htmlLegend4 = L.control.htmllegend({
+        position: 'bottomright',
+        legends: [{
+            name: 'Layer 4',
+            layer: layer4,
+            elements: [{
+                label: 'Hexagon',
+                html: '<div class="hexagon"></div>'
+            }]
+        }],
+        defaultOpacity: 0.8,
+        collapseSimple: true,
+        detectStretched: true,
+        visibleIcon: 'icon icon-eye',
+        hiddenIcon: 'icon icon-eye-slash',
+        updateOpacity: function (layer, opacity) {
+            layer.setStyle({ stroke: false, fillColor: '#64C7CC', fill: true, fillOpacity: opacity })
+        }
+    })
+
+    map.addControl(htmlLegend4)
+
+    var DeleteControl  = L.Control.extend({
+        options: {
+            position: 'topright'
+        },
+        onAdd: function(m) {
+            var btn = L.DomUtil.create('button')
+            btn.innerText = 'Delete layer 1'
+            L.DomEvent.on(btn, 'click', function() {
+                // Remove legend uses entry id, which can be accessed through `htmllegend._entries`
+                htmlLegend1and2.removeLegend(1)
+                m.removeControl(this)
+            })
+            return btn
+        }
+    })
+    map.addControl(new DeleteControl())
 </script>
 </body>
 </html>

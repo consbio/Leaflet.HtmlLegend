@@ -2,7 +2,7 @@
 
 A simple Leaflet plugin for creating legends with HTML.
 
-*Tested with Leaflet 1.3.1*
+*Tested with Leaflet 1.3.x*
 
 ## Install
 
@@ -29,23 +29,20 @@ Include the JavaScript:
 ```
 
 
-Options:
-```
-{
-    position: 'topright',
-    legends: [],   // array of legend entries. see below for the structure
-    collapseSimple: false,  // if true, legend entries that are from a simple renderer will use compact presentation
-    detectStretched: false,  // if true, will test to see if legend entries look stretched.  These are usually in sets of 3 with the middle element having no label.
-    collapsedOnInit: false,  // if true, legends will be collapsed when a new instance is initialized.
-    disableVisibilityControl: false  // if true, visibility toggle button and opacity sliders will not be added.
-    defaultOpacity: 1, // default opacity for layers in specified in legends.
-    visibleIcon: 'leaflet-html-legend-icon-eye',  // css class for the visible icon on opacity slider
-    hiddenIcon: 'leaflet-html-legend-icon-eye-slash',  // css class for the hidden icon on opacity slider
-    toggleIcon: 'leaflet-html-legend-icon-eye-slash'  // css class for the icon on visibility toggle button
-}
-```
-
-
+#### Options:
+| Option | Type | Default | Description |
+| :---   | :--- | :---    | :---        |
+| position | String | 'topright' | Map position of element |
+| legend | Array | - | Array of legend entries (see below for the structure) |
+| collapseSimple | bool | false | Whether to use compact presentation for legend entries that are from a simple renderer |
+| detectStreched | bool | false | Test to see if legend entries look stretched (these are usually in sets of 3 with the middle element having no label) |
+| collapsedOnInit | bool | false | Whether to initialize instance in collapsed mode |
+| disableVisibilityControl | bool | false | Whether to add visibility toggle button and opacity sliders |
+| updateOpacity | function | null | If set, this function is used to update opacity of the attached layer (it receives the layer and opacity as arguments) |
+| defaultOpacity | number | 1 | Default opacity for layers in specified in legends |
+| visibleIcon | String | 'leaflet-html-legend-icon-eye' | css class for the visible icon on opacity slider |
+| hiddenIcon | String | 'leaflet-html-legend-icon-eye-slash' | css class for the hidden icon on opacity slider |
+| toggleIcon | String | 'leaflet-html-legend-icon-eye-slash' | css class for the icon on visibility toggle button |
 
 Each entry in `legends` array can have the following keys:
 * name
@@ -68,6 +65,8 @@ htmlLegend.addLegend({
         }]
     })
 ```
+
+An existing entry in a legend control instance can be removed using `removeLegend`. This method needs id of the entry, which can be obtained from `htmllegend._entries` (see the example for usage).
 
 
 See the [example](//consbio.github.io/Leaflet.HtmlLegend) for usage details.

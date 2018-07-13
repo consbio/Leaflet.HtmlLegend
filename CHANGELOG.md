@@ -1,4 +1,15 @@
-0.2.3 (2017-11-13)
+0.3.3 (2018-07-13)
+  * Add support for disabling visibility controls (see `options`)
+
+0.3.2 (2018-05-30)
+  * Add `removeLegend` method
+
+0.3.1 (2018-05-29)
+  * Add `updateOpacity` to `options`
+    - A new method that allows to use a custom function for adjusting layers opacity
+  * Fix version
+
+0.3.0 (2017-11-13)
   * Add `addLegend`
     - A new method to add legends to existing instances of HtmlLegend
 
