@@ -17,6 +17,7 @@ L.Control.HtmlLegend = L.Control.extend({
         // if true, legends will be collapsed when a new instance is initialized
         collapsedOnInit: false,
 
+        disableVisibilityControls: false,
         defaultOpacity: 1,
         visibleIcon: 'leaflet-html-legend-icon-eye',
         hiddenIcon: 'leaflet-html-legend-icon-eye-slash',
@@ -136,9 +137,6 @@ L.Control.HtmlLegend = L.Control.extend({
             return;
         }
 
-        const opacity = layer.opacity || this.options.defaultOpacity || 1;
-        this._updateOpacity(layer, opacity);
-
         if (this._map.hasLayer(layer)) {
             this._activeLayers += 1;
         }
@@ -148,40 +146,45 @@ L.Control.HtmlLegend = L.Control.extend({
 
         container.classList.add('layer-control');
 
-        const toggleButton = L.DomUtil.create('i', `visibility-toggle ${this.options.toggleIcon}`, container);
-        toggleButton.dataset.visibileOpacity = opacity;
-        L.DomEvent.on(toggleButton, 'click', (e) => {
-            const button = e.target;
-            if (L.DomUtil.hasClass(button, 'disabled')) {
-                L.DomUtil.removeClass(button, 'disabled');
-                this._updateOpacity(layer, button.dataset.visibileOpacity);
-            }
-            else {
-                L.DomUtil.addClass(button, 'disabled');
-                this._updateOpacity(layer, 0);
-            }
-        });
+        if (!this.options.disableVisibilityControls) {
+            const opacity = layer.opacity || this.options.defaultOpacity || 1;
+            this._updateOpacity(layer, opacity);
 
-        const opacityController = L.DomUtil.create('span', 'opacity-slider', container);
+            const toggleButton = L.DomUtil.create('i', `visibility-toggle ${this.options.toggleIcon}`, container);
+            toggleButton.dataset.visibileOpacity = opacity;
+            L.DomEvent.on(toggleButton, 'click', (e) => {
+                const button = e.target;
+                if (L.DomUtil.hasClass(button, 'disabled')) {
+                    L.DomUtil.removeClass(button, 'disabled');
+                    this._updateOpacity(layer, button.dataset.visibileOpacity);
+                }
+                else {
+                    L.DomUtil.addClass(button, 'disabled');
+                    this._updateOpacity(layer, 0);
+                }
+            });
 
-        L.DomUtil.create('span', 'slider-label', opacityController).innerHTML = 'Transparency:';
+            const opacityController = L.DomUtil.create('span', 'opacity-slider', container);
 
-        L.DomUtil.create('i', this.options.visibleIcon, opacityController);
+            L.DomUtil.create('span', 'slider-label', opacityController).innerHTML = 'Transparency:';
 
-        const opacitySlider = L.DomUtil.create('input', null, opacityController);
-        opacitySlider.type = 'range';
-        opacitySlider.min = 0;
-        opacitySlider.max = 1;
-        opacitySlider.step = 0.1;
-        opacitySlider.onchange = ((e) => {
-            const newOpacity = 1 - e.target.value || 0;
-            this._updateOpacity(layer, newOpacity);
-            toggleButton.dataset.visibileOpacity = newOpacity;
-            L.DomUtil.removeClass(toggleButton, 'disabled');
-        });
-        opacitySlider.value = 1 - (opacity);
+            L.DomUtil.create('i', this.options.visibleIcon, opacityController);
 
-        L.DomUtil.create('i', this.options.hiddenIcon, opacityController);
+            const opacitySlider = L.DomUtil.create('input', null, opacityController);
+            opacitySlider.type = 'range';
+            opacitySlider.min = 0;
+            opacitySlider.max = 1;
+            opacitySlider.step = 0.1;
+            opacitySlider.onchange = ((e) => {
+                const newOpacity = 1 - e.target.value || 0;
+                this._updateOpacity(layer, newOpacity);
+                toggleButton.dataset.visibileOpacity = newOpacity;
+                L.DomUtil.removeClass(toggleButton, 'disabled');
+            });
+            opacitySlider.value = 1 - (opacity);
+
+            L.DomUtil.create('i', this.options.hiddenIcon, opacityController);
+        };
 
         this._map.on('layeradd', (e) => {
             if (e.layer === layer) {

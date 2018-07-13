@@ -23,7 +23,7 @@
     "url": "https://github.com/consbio/Leaflet.HtmlLegend/issues"
   },
   "peerDependencies": {
-    "leaflet": "^1.2.0"
+    "leaflet": "^1.3.0"
   },
   "main": "dist/L.Control.HtmlLegend.js",
   "repository": {
