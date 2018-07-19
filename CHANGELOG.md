@@ -1,3 +1,6 @@
+0.3.4 (2018-07-19)
+  * Bug fix: throw error if `addLegend` is called before control is added to the map
+
 0.3.3 (2018-07-13)
   * Add support for disabling visibility controls (see `options`)
 

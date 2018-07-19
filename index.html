@@ -332,6 +332,7 @@
         visibleIcon: 'icon icon-eye',
         hiddenIcon: 'icon icon-eye-slash'
     })
+    map.addControl(htmlLegend1and2)
 
     htmlLegend1and2.addLegend({
         name: 'Layer 2',
@@ -346,7 +347,6 @@
             }
         }]
     })
-    map.addControl(htmlLegend1and2)
 
     var htmlLegend3 = L.control.htmllegend({
         position: 'bottomright',

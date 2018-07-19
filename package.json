@@ -1,6 +1,6 @@
 {
   "name": "leaflet-html-legend",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Leaflet legend plugin using html elements",
   "homepage": "http://github.com/consbio/Leaflet.HtmlLegend",
   "author": {

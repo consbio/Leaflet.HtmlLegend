@@ -51,7 +51,9 @@ L.Control.HtmlLegend = L.Control.extend({
     addLegend(legend) {
         if (this._map) {
             this._renderLegend(legend);
+            return this._lastId;
         }
+        throw Error('Legend control must be added to the map first.')
     },
 
     removeLegend(itemIdx) {
