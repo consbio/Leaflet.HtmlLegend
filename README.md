@@ -37,7 +37,7 @@ Include the JavaScript:
 | collapseSimple | bool | false | Whether to use compact presentation for legend entries that are from a simple renderer |
 | detectStreched | bool | false | Test to see if legend entries look stretched (these are usually in sets of 3 with the middle element having no label) |
 | collapsedOnInit | bool | false | Whether to initialize instance in collapsed mode |
-| disableVisibilityControl | bool | false | Whether to add visibility toggle button and opacity sliders |
+| disableVisibilityControls | bool | false | Whether to add visibility toggle button and opacity sliders |
 | updateOpacity | function | null | If set, this function is used to update opacity of the attached layer (it receives the layer and opacity as arguments) |
 | defaultOpacity | number | 1 | Default opacity for layers in specified in legends |
 | visibleIcon | String | 'leaflet-html-legend-icon-eye' | css class for the visible icon on opacity slider |
